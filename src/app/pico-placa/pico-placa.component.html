@@ -1,0 +1,79 @@
+<mat-card class="pico-placa-card">
+  <mat-card-header>
+    <mat-card-title>Pico y Placa Predictor</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form (ngSubmit)="predict()" #form="ngForm">
+      <!-- License Plate -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>License Plate</mat-label>
+        <input
+          matInput
+          placeholder="PBX-1234"
+          required
+          name="plate"
+          [(ngModel)]="plate"
+        />
+        <mat-error *ngIf="form.submitted && !plate">
+          Plate is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Date -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Date</mat-label>
+        <input
+          matInput
+          placeholder="Choose a date"
+          required
+          name="date"
+          [(ngModel)]="date"
+        />
+        <mat-error *ngIf="form.submitted && !date">
+          Date is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Time -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Time</mat-label>
+        <input
+          matInput
+          placeholder="HH:MM"
+          required
+          name="time"
+          [(ngModel)]="time"
+        />
+        <mat-error *ngIf="form.submitted && !time">
+          Time is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Submit -->
+      <div class="actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!form.valid"
+        >
+          Check
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+
+  <!-- Resultado -->
+  <mat-card-actions *ngIf="result">
+    <p
+      [ngClass]="{
+        'allowed': result.startsWith('Allowed'),
+        'blocked': result.startsWith('Not'),
+        'error':  !result.startsWith('Allowed') && !result.startsWith('Not')
+      }"
+    >
+      {{ result }}
+    </p>
+  </mat-card-actions>
+</mat-card>

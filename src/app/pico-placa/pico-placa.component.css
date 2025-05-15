@@ -1,0 +1,9 @@
+.full-width { width: 100%; }
+.actions { margin-top: 1rem; text-align: right; }
+.allowed { color: green; }
+.blocked { color: red; }
+.pico-placa-card { max-width: 400px; margin: 2rem auto; }
+.error   { color: orange; font-weight: bold; }
+.mat-card-header .mat-card-title {
+  color: whitesmoke;              /* color oscuro de texto */
+}
